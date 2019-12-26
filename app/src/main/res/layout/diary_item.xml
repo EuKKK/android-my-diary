@@ -31,7 +31,7 @@
             android:gravity="center"
             android:textColor="#ffffff"
             android:text="星期四"
-            android:textSize="25sp"
+            android:textSize="20sp"
             />
     </LinearLayout>
 

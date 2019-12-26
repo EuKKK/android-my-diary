@@ -44,7 +44,7 @@ public class DiaryAdapter extends ArrayAdapter<Diary> {
             viewHolder = (ViewHolder) view.getTag();
         }
         viewHolder.day.setText(diary.getDay()+"");
-        viewHolder.weekday.setText(diary.getWeekday()+"");
+        viewHolder.weekday.setText(diary.getWeekday());
         viewHolder.date.setText(diary.getYear()+"."+diary.getMonth()+"."+diary.getDay());
         viewHolder.summary.setText(diary.getSummary());
         viewHolder.mood.setImageResource(diary.getMoodPic());
