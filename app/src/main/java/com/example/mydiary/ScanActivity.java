@@ -8,21 +8,32 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.litepal.LitePal;
-import org.litepal.crud.DataSupport;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ScanActivity extends AppCompatActivity {
+    private List<Diary> diaryList = new ArrayList<>();  //用于存储ListView所有数据的集合
+    private List<Diary> diaryList1 = new ArrayList<>();  //用于存储查询到的数据的集合
+    private static String userID_receive;
+    private DiaryAdapter adapter;
+    private ListView listView;
 
-    private List<Diary> diaryList = new ArrayList<>();
-    private String userID_receive;
+    public static String get_userID_receive(){
+        return userID_receive;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.scan);
+        //隐藏默认标题栏
+        ActionBar actionbar = getSupportActionBar();
+        if(actionbar != null){
+            actionbar.hide();
+        }
         //获取LoginActivity传来的用户ID数据
         Intent intent = getIntent();
         if(intent != null){
@@ -30,48 +41,64 @@ public class ScanActivity extends AppCompatActivity {
                 userID_receive = intent.getStringExtra("user_id");
             }
         }
-        //隐藏默认标题栏
-        ActionBar actionbar = getSupportActionBar();
-        if(actionbar != null){
-            actionbar.hide();
-        }
         //创建数据库
         LitePal.getDatabase();
         //初始化日记数据
         initDiaries();
-        DiaryAdapter adapter = new DiaryAdapter(ScanActivity.this, R.layout.diary_item, diaryList);
-        ListView listView = (ListView) findViewById(R.id.list_view);
+
+        adapter = new DiaryAdapter(ScanActivity.this, R.layout.diary_item, diaryList);
+        listView = (ListView) findViewById(R.id.list_view);
         listView.setAdapter(adapter);
+
         //点击子项调用的方法
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Diary diary = diaryList.get(position);
-
+                Intent intent = new Intent(ScanActivity.this, DiaryViewActivity.class);
+                intent.putExtra("diary_info", diary);
+                startActivity(intent);
             }
         });
-
         //点击add按钮添加的方法
         Button add = (Button) findViewById(R.id.add_diary);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int mPic = 0;
-                int wPic = 0;
-                Diary dia = new Diary(userID_receive, Date.getYear(),Date.getMonth(),Date.getDay(),
-                        Date.getWeekday(), "",mPic, wPic);
-
+                diaryList1 = LitePal.where("year = ? and month = ? and day = ? and userID = ?"
+                        , String.valueOf(Date.getYear()), String.valueOf(Date.getMonth()),
+                        String.valueOf(Date.getDay()), userID_receive)
+                        .find(Diary.class);
+                if(diaryList1.size() != 0){
+                    Toast.makeText(ScanActivity.this, "今天的日记已经创建", Toast.LENGTH_SHORT).show();
+                }else{
+                    int mPic = 0;
+                    int wPic = 0;
+                    Diary dia = new Diary(userID_receive, Date.getYear(),Date.getMonth(),Date.getDay(),
+                            Date.getWeekday(), "",mPic, wPic);
+                    Intent intent1 = new Intent(ScanActivity.this, DiaryEditActivity.class);
+                    intent1.putExtra("diary_create", dia);
+                    startActivity(intent1);
+                }
+                diaryList1.clear();
             }
         });
+
     }
 
     private void initDiaries(){
-        diaryList = DataSupport.where("userID = ?", userID_receive)
+        //diaryList = DataSupport.findAll(Diary.class);
+        diaryList = LitePal.where("userID = ?", userID_receive)
                 .order("year desc,month desc,day desc")
                 .find(Diary.class);
-        Diary diary1 = new Diary("Jackson", 2017, 7, 21, "星期一", "愿中国的年轻人都摆脱冷气", R.drawable.first, R.drawable.second);
-        Diary diary2 = new Diary("Jackson", 2018, 8, 22, "星期二", "不必听自暴自弃者的话", R.drawable.first, R.drawable.second);
-        diaryList.add(diary1);
-        diaryList.add(diary2);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initDiaries();
+        adapter = new DiaryAdapter(ScanActivity.this, R.layout.diary_item, diaryList);
+        listView.setAdapter(adapter);
+        //adapter.notifyDataSetChanged();
     }
 }

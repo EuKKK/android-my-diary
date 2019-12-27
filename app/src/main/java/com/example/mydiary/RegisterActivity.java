@@ -1,5 +1,6 @@
 package com.example.mydiary;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import org.litepal.crud.DataSupport;
+import org.litepal.LitePal;
 
 import java.util.List;
 
@@ -52,7 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }else if(TextUtils.isEmpty(password_con)){
                     Toast.makeText(RegisterActivity.this, "请确认密码", Toast.LENGTH_SHORT).show();
                 }else{
-                    users = DataSupport.where("userID = ?", String.valueOf(userID_re))
+                    users = LitePal.where("userID = ?", userID_re)
                             .find(User.class);
                     if(!users.isEmpty()){
                         Toast.makeText(RegisterActivity.this, "用户ID已存在", Toast.LENGTH_SHORT).show();
@@ -61,6 +62,9 @@ public class RegisterActivity extends AppCompatActivity {
                     }else{
                         User user = new User(userID_re,password_re);
                         user.save();
+                        Intent intent = new Intent(RegisterActivity.this, ScanActivity.class);
+                        intent.putExtra("user_id",user.getUsername());
+                        startActivity(intent);
                     }
                 }
             }

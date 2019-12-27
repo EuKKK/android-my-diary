@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import org.litepal.crud.DataSupport;
+import org.litepal.LitePal;
 
 import java.util.List;
 
@@ -51,11 +51,11 @@ public class LoginActivity extends AppCompatActivity {
                 }else if(TextUtils.isEmpty(password)){
                     Toast.makeText(LoginActivity.this, "密码不可为空！", Toast.LENGTH_SHORT).show();
                 }else{  //验证账号是否存在及密码是否正确
-                    users = DataSupport.where("userID = ? ", String.valueOf(userID)).find(User.class);
+                    users = LitePal.where("userID = ? ", String.valueOf(userID)).find(User.class);
                     if (users.isEmpty()){
                         Toast.makeText(LoginActivity.this, "账号不存在", Toast.LENGTH_SHORT).show();
                     }else{
-                        users = DataSupport.where("userID = ? and password = ?", String.valueOf(userID),
+                        users = LitePal.where("userID = ? and password = ?", String.valueOf(userID),
                                 String.valueOf(password)).find(User.class);
                         if (users.isEmpty()){
                             Toast.makeText(LoginActivity.this, "密码错误", Toast.LENGTH_SHORT).show();

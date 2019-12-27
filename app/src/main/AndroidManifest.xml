@@ -11,29 +11,47 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ScanActivity"
-            android:launchMode="singleTop">
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="com.example.mydiary.LOGIN" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".CalendarActivity">
+        <activity
+            android:name=".CalendarActivity"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="com.example.mydiary.CALENDAR" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity">
+        <activity
+            android:name=".LoginActivity"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity">
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".DiaryViewActivity" />
+        <activity android:name=".DiaryEditActivity"></activity>
+        <activity android:name=".UserinfoActivity">
+            <intent-filter>
+                <action android:name="com.example.mydiary.USERINFO" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Headchange">
+            <intent-filter>
+                <action android:name="com.example.mydiary.HEADCHANGE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
     </application>
 

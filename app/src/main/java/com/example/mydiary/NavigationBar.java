@@ -41,7 +41,8 @@ public class NavigationBar extends LinearLayout {
         infoPage.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent("com.example.mydiary.USERINFO");
+                getContext().startActivity(intent);
             }
         });
     }

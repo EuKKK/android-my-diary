@@ -46,9 +46,13 @@ public class DiaryAdapter extends ArrayAdapter<Diary> {
         viewHolder.day.setText(diary.getDay()+"");
         viewHolder.weekday.setText(diary.getWeekday());
         viewHolder.date.setText(diary.getYear()+"."+diary.getMonth()+"."+diary.getDay());
-        viewHolder.summary.setText(diary.getSummary());
         viewHolder.mood.setImageResource(diary.getMoodPic());
         viewHolder.weather.setImageResource(diary.getWeatherPic());
+        if(diary.getSummary().length() <= 10){
+            viewHolder.summary.setText(diary.getSummary());
+        }else{
+            viewHolder.summary.setText(diary.getSummary().substring(0,10));
+        }
         return view;
     }
 

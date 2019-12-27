@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg">
 
     <com.example.mydiary.NavigationBar
         android:layout_width="match_parent"
@@ -13,6 +15,11 @@
         android:layout_height="0dp"
         android:layout_weight="5" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#1E90FF" />
+
     <ListView
         android:id="@+id/list_view2"
         android:layout_width="370dp"
@@ -21,5 +28,5 @@
         android:dividerHeight="10dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"></ListView>
+        android:layout_marginBottom="10dp"/>
 </LinearLayout>

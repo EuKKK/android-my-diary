@@ -1,13 +1,15 @@
 package com.example.mydiary;
 
-import org.litepal.crud.DataSupport;
+import org.litepal.crud.LitePalSupport;
+
+import java.io.Serializable;
 
 /**
  * Created by Administrator on 2019/12/23.
  * 用于存入数据库和显示数据的日记类
  */
 
-public class Diary extends DataSupport {
+public class Diary extends LitePalSupport implements Serializable {
     private String userID;
     private int year;
     private int month;
@@ -27,6 +29,17 @@ public class Diary extends DataSupport {
         this.summary = summary;
         this.moodPic = moodPic;
         this.weatherPic = weatherPic;
+    }
+
+    public Diary(){
+        this.userID = "";
+        this.year = 0;
+        this.month = 0;
+        this.day = 0;
+        this.weekday = "";
+        this.summary = "";
+        this.moodPic = 0;
+        this.weatherPic = 0;
     }
 
     public String getUserID(){return userID;}

@@ -1,13 +1,15 @@
 package com.example.mydiary;
 
-import org.litepal.crud.DataSupport;
+import org.litepal.crud.LitePalSupport;
+
+import java.io.Serializable;
 
 /**
  * Created by Administrator on 2019/12/26.
  * 用于存入数据库和显示数据的用户类
  */
 
-public class User extends DataSupport {
+public class User extends LitePalSupport implements Serializable {
     private String userID;
     private String password;
 

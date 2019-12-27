@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:orientation="vertical">
+
+    <com.example.mydiary.NavigationBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.example.mydiary.RoundedImageView
+        android:id="@+id/ivAvatar1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/msb_default_person"
+        app:border_color="#00000000"
+        app:border_width="1dip"
+        app:mutate_background="true"
+        app:oval="true" />
+
+    <Button
+        android:id="@+id/change"
+        android:layout_width="151dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="更改头像" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/nametext"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="#C43D7DC2"
+            android:gravity="center"
+            android:text="昵称"
+            android:textColor="#EEE8E8"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/name"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:onClick="alert_edit"
+            android:paddingLeft="10dp"
+            android:text="123"
+            android:textSize="20sp" />
+
+    </LinearLayout><![CDATA[
+    >
+    ]]>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/signtext"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:background="#443E3E"
+            android:gravity="center"
+            android:text="签名"
+            android:textColor="#F0EDED" />
+
+        <Button
+            android:id="@+id/signbutton"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:paddingLeft="10dp"
+            android:text="123"
+            android:textSize="20sp"
+            android:onClick="alert_edit"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/sex"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:background="#00000000"
+            android:gravity="center"
+            android:text="性别" />
+
+        <Button
+            android:id="@+id/sexbutton"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:paddingLeft="10dp"
+            android:text="123"
+            android:textSize="20sp"
+            android:onClick="alert_edit" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/age"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:background="#00000000"
+            android:gravity="center"
+            android:text="年龄" />
+
+        <Button
+            android:id="@+id/agebutton"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:paddingLeft="10dp"
+            android:text="123"
+            android:textSize="20sp"
+            android:onClick="alert_edit" />
+
+    </LinearLayout>
+
+</LinearLayout>

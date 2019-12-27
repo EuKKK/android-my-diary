@@ -8,52 +8,45 @@ import java.util.Calendar;
  */
 
 public class Date {
-    private static int year;
-    private static int month;
-    private static int day;
-    private static String weekday;
     private static final Calendar c = Calendar.getInstance();
 
     public static int getYear(){
-        year = c.get(Calendar.YEAR);
-        return year;
+        return c.get(Calendar.YEAR);
     }
 
     public static int getMonth(){
-        month = c.get(Calendar.MONTH)+1;
-        return month;
+       return c.get(Calendar.MONTH)+1;
     }
 
     public static int getDay(){
-        day = c.get(Calendar.DAY_OF_MONTH);
-        return day;
+        return c.get(Calendar.DAY_OF_MONTH);
     }
 
     public static String getWeekday(){
         String weekday1 = String.valueOf(c.get(Calendar.DAY_OF_WEEK));
         switch(weekday1){
             case "1":
-                weekday="星期天";
+                weekday1="星期天";
                 break;
             case "2":
-                weekday="星期一";
+                weekday1="星期一";
                 break;
             case "3":
-                weekday="星期二";
+                weekday1="星期二";
                 break;
             case "4":
-                weekday="星期三";
+                weekday1="星期三";
                 break;
             case "5":
-                weekday="星期四";
+                weekday1="星期四";
                 break;
             case "6":
-                weekday="星期五";
+                weekday1="星期五";
                 break;
             case "7":
-                weekday="星期六";
+                weekday1="星期六";
                 break;
         }
-        return weekday;
+        return weekday1;
     }
 }
